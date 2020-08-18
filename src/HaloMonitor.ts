@@ -133,6 +133,8 @@ class ErrorMonitor {
 
     // 保存最新的10条错误
     data.from = window.location.href
+    // 堆栈信息最大150
+    data.stack = data.stack.slice(0, 150)
     this.errors.push(data)
     this.errors = this.errors.slice(-10)
 
@@ -141,6 +143,7 @@ class ErrorMonitor {
       clearTimeout(this.timer)
     }
     this.timer = setTimeout(() => {
+      if (!this.errors.length) return ''
       console.log('准备提交收集到的错误信息', this.errors)
       if (!reportUrl) return console.error('没有配置reportUrl')
       const pairs: string[] = [`pid=${pid}`, `uid=${uid}`]
