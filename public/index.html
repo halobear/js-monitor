@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@halobear/monitor</title>
+    <style>
+      body {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      h2,
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>js-monitor</h2>
+    <p>一个入门级的前端监控</p>
+    <div class="container"></div>
+  </body>
+  <script>
+    var haloMonitor = HaloMonitor({
+      pid: 'test',
+    })
+
+    document.querySelector('.container').innerHTML = `
+      <img src="http://pic.333.top/ebf7590bf16d9963a09b1acf91fe8a37.jpg" />
+      <img src="http://pic44.kuan441.top/ebf7590bf16d9963a09b1acf91fe8a37.jpg" />
+      <img src="http://pic33.kuan441.top/ebf7590bf16d9963a09b1acf91fe8a37.jpg" />
+    `
+  </script>
+</html>
