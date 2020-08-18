@@ -5,6 +5,7 @@
 declare namespace CreateReport {
     interface options {
         pid: string;
+        url: string;
         delay?: number;
         needReport?: Function;
     }
