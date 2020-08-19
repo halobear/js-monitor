@@ -1,5 +1,4 @@
 // 使用localStorage给用户一个唯一的标志
-
 const key = 'halo_monitor_uid'
 
 function getUserId(): string {

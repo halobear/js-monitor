@@ -153,7 +153,7 @@ class ErrorMonitor {
   private toReport() {
     const { pid, uid, reportUrl } = this.options
     if (!this.errors.length) return ''
-    console.log('准备提交收集到的错误信息', this.errors)
+    // console.log('准备提交收集到的错误信息', this.errors)
     if (!reportUrl) return console.error('没有配置reportUrl')
     const pairs: string[] = [`pid=${pid}`, `uid=${uid}`]
     this.errors.forEach((item, i) => {
