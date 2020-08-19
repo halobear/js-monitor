@@ -91,7 +91,7 @@ class ErrorMonitor {
           const anyNode = node as any
           this.report({
             type: LOAD_ERROR_TYPE[key],
-            brief: `${anyNode.baseURI}@${anyNode.src || anyNode.href}`,
+            brief: `${anyNode.src || anyNode.href}`,
             stack: 'no stack',
           })
         } else {
