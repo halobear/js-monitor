@@ -24,7 +24,7 @@ namespace CreateReport {
 
   export interface reportError {
     type: number
-    desc: string
+    brief: string
     stack: string
   }
 
@@ -91,7 +91,7 @@ class ErrorMonitor {
           const anyNode = node as any
           this.report({
             type: LOAD_ERROR_TYPE[key],
-            desc: `${anyNode.baseURI}@${anyNode.src || anyNode.href}`,
+            brief: `${anyNode.baseURI}@${anyNode.src || anyNode.href}`,
             stack: 'no stack',
           })
         } else {
@@ -99,7 +99,7 @@ class ErrorMonitor {
           const { message, filename, lineno, colno, error } = event
           this.report({
             type: JS_TRACKER_ERROR_MAP.ERROR_RUNTIME,
-            desc: `${message} at ${filename}:${lineno}:${colno}`,
+            brief: `${message} at ${filename}:${lineno}:${colno}`,
             stack: error && error.stack ? error.stack : 'no stack',
           })
         }
@@ -114,7 +114,7 @@ class ErrorMonitor {
         // console.log('promise收集到错误', event)
         this.report({
           type: JS_TRACKER_ERROR_MAP.ERROR_RUNTIME,
-          desc: `Unhandled Rejection reason: ${event.reason}`,
+          brief: `Unhandled Rejection reason: ${event.reason}`,
           stack: event.reason.stack || 'no stack',
         })
       },
@@ -126,7 +126,7 @@ class ErrorMonitor {
   report(itemError: CreateReport.reportError) {
     const data = this.formatError(itemError)
     // 重复的错误不重复上报
-    if (this.errors.some((item) => item.desc === data.desc)) return
+    if (this.errors.some((item) => item.brief === data.brief)) return
 
     const { delay = 1000, needReport } = this.options
 
