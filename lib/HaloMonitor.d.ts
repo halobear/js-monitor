@@ -1,13 +1,10 @@
-/**
- * js 错误上报
- * [参考部分代码](https://github.com/LianjiaTech/fee/blob/master/sdk/lib/js-tracker/index.js)
- */
 declare namespace CreateReport {
     interface options {
         pid: string;
-        url: string;
-        delay?: number;
+        uid: string;
+        reportUrl: string;
         needReport?: Function;
+        delay?: number;
     }
     interface loadErrorType {
         readonly SCRIPT: number;
@@ -22,14 +19,20 @@ declare namespace CreateReport {
         desc: string;
         stack: string;
     }
+    type errorKeys = keyof reportError;
+    interface formatError extends reportError {
+        from: string;
+    }
 }
 declare class ErrorMonitor {
-    private lastReportTime;
+    private timer;
     private options;
     private errors;
     constructor(options: CreateReport.options);
     private init;
-    report(data: CreateReport.reportError): void;
+    report(itemError: CreateReport.reportError): void;
+    private toReport;
+    formatError(data: CreateReport.reportError): CreateReport.formatError;
 }
-declare const _default: (settings: CreateReport.options) => ErrorMonitor;
+declare const _default: (settings: CreateReport.options) => ErrorMonitor | null;
 export default _default;
