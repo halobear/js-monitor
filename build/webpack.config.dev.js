@@ -4,7 +4,7 @@ const logger = require('@luzhongk/node-logger')
 const baseConfig = require('./webpack.config.base')
 const { resolve } = require('./utils')
 
-const port = 9000
+const port = 9003
 
 module.exports = merge(baseConfig, {
   mode: 'development',
