@@ -2,41 +2,11 @@
  * js 错误上报
  * [参考部分代码](https://github.com/LianjiaTech/fee/blob/master/sdk/lib/js-tracker/index.js)
  */
-import userId from './userId'
-
-namespace CreateReport {
-  export interface options {
-    pid: string
-    uid: string
-    reportUrl: string
-    needReport?: Function
-    delay?: number
-  }
-  export interface loadErrorType {
-    readonly SCRIPT: number
-    readonly LINK: number
-    readonly IMG: number
-    readonly AUDIO: number
-    readonly VIDEO: number
-  }
-
-  export type loadErrorKeys = keyof loadErrorType
-
-  export interface reportError {
-    type: number
-    brief: string
-    stack: string
-  }
-
-  export type errorKeys = keyof reportError
-
-  export interface formatError extends reportError {
-    from: string
-  }
-}
+import userId from './utils/userId'
+import { Halo } from './types/Halo'
 
 // 默认配置
-const defaults: CreateReport.options = {
+const defaults: Halo.options = {
   pid: 'test', // 项目名字
   uid: userId, // 用户id
   reportUrl: '', // 接口地址
@@ -56,7 +26,7 @@ enum JS_TRACKER_ERROR_MAP {
 }
 
 // 资源加载错误
-const LOAD_ERROR_TYPE: CreateReport.loadErrorType = {
+const LOAD_ERROR_TYPE: Halo.loadErrorType = {
   SCRIPT: JS_TRACKER_ERROR_MAP.ERROR_SCRIPT,
   LINK: JS_TRACKER_ERROR_MAP.ERROR_STYLE,
   IMG: JS_TRACKER_ERROR_MAP.ERROR_IMAGE,
@@ -67,9 +37,9 @@ const LOAD_ERROR_TYPE: CreateReport.loadErrorType = {
 // 上次上报时间
 class ErrorMonitor {
   private timer: NodeJS.Timeout | null
-  private options: CreateReport.options
-  private errors: CreateReport.reportError[]
-  constructor(options: CreateReport.options) {
+  private options: Halo.options
+  private errors: Halo.reportError[]
+  constructor(options: Halo.options) {
     this.errors = []
     this.timer = null
     this.options = { ...defaults, ...options }
@@ -87,7 +57,7 @@ class ErrorMonitor {
         const nodeName = (node.nodeName || '').toUpperCase()
         if (errorTarget !== window && nodeName && nodeName in LOAD_ERROR_TYPE) {
           // 资源加载错误
-          const key = nodeName as CreateReport.loadErrorKeys
+          const key = nodeName as Halo.loadErrorKeys
           const anyNode = node as any
           this.report({
             type: LOAD_ERROR_TYPE[key],
@@ -123,7 +93,7 @@ class ErrorMonitor {
   }
 
   // 上报错误
-  report(itemError: CreateReport.reportError) {
+  report(itemError: Halo.reportError) {
     const data = this.formatError(itemError)
     // 重复的错误不重复上报
     if (this.errors.some((item) => item.brief === data.brief)) return
@@ -158,7 +128,7 @@ class ErrorMonitor {
     const pairs: string[] = [`pid=${pid}`, `uid=${uid}`]
     this.errors.forEach((item, i) => {
       Object.keys(item).forEach((key) => {
-        const v = item[key as CreateReport.errorKeys] || ''
+        const v = item[key as Halo.errorKeys] || ''
         pairs.push(`${key}[${i}]=${v}`)
       })
     })
@@ -170,7 +140,7 @@ class ErrorMonitor {
   }
 
   // 格式化错误信息
-  formatError(data: CreateReport.reportError): CreateReport.formatError {
+  formatError(data: Halo.reportError): Halo.formatError {
     return {
       ...data,
       stack: data.stack.slice(0, 150),
@@ -181,7 +151,7 @@ class ErrorMonitor {
 
 // 通过单例模式暴露
 let errorReport: ErrorMonitor
-export default (settings: CreateReport.options) => {
+export default (settings: Halo.options) => {
   // 判断必填写条件
   if (!settings.reportUrl) {
     console.error('没有配置reportUrl')
