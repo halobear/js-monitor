@@ -3,7 +3,7 @@
  * [参考部分代码](https://github.com/LianjiaTech/fee/blob/master/sdk/lib/js-tracker/index.js)
  */
 import userId from './utils/userId'
-import { Halo } from './types/Halo'
+import { Halo } from '../types/Halo'
 
 // 默认配置
 const defaults: Halo.options = {

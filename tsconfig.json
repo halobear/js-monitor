@@ -2,8 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "lib",
+    "declaration": true,
+    "declarationDir": "lib",
     "sourceMap": false,
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
     "allowJs": false,
@@ -20,5 +22,5 @@
       "@": ["src"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "types"]
 }

@@ -2,13 +2,17 @@
   "name": "@halobear/monitor",
   "version": "1.0.0",
   "description": "一个入门级前端监控",
-  "main": "/dist/HaloMonitor.js",
-  "types": "/dist/types/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "dev": "NODE_ENV=development rollup --config --watch",
-    "build:lib": "NODE_ENV=production rollup --watch",
+    "build": "NODE_ENV=production rollup --config",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "lib",
+    "src"
+  ],
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-commonjs": "^14.0.0",
@@ -20,6 +24,7 @@
     "eslint": "^7.4.0",
     "eslint-plugin-html": "^6.0.2",
     "rollup": "^2.21.0",
+    "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.2",
     "typescript": "^3.9.3"
