@@ -6,7 +6,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "dev": "NODE_ENV=development rollup --config --watch",
-    "build": "NODE_ENV=production rollup --config",
+    "build": "rimraf lib && NODE_ENV=production rollup --config",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
@@ -23,8 +23,8 @@
     "@typescript-eslint/parser": "^3.6.1",
     "eslint": "^7.4.0",
     "eslint-plugin-html": "^6.0.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.21.0",
-    "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.2",
     "typescript": "^3.9.3"

@@ -517,11 +517,6 @@ estraverse@^5.1.0:
   resolved "https://registry.npm.taobao.org/estraverse/download/estraverse-5.2.0.tgz?cache=0&sync_timestamp=1596641261331&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Festraverse%2Fdownload%2Festraverse-5.2.0.tgz#307df42547e6cc7324d3cf03c155d5cdb8c53880"
   integrity sha1-MH30JUfmzHMk088DwVXVzbjFOIA=
 
-estree-walker@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.npmjs.org/estree-walker/-/estree-walker-0.6.1.tgz#53049143f40c6eb918b23671d1fe3219f3a1b362"
-  integrity sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
-
 estree-walker@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"
@@ -734,15 +729,6 @@ jest-worker@^26.0.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-js-cleanup@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/js-cleanup/-/js-cleanup-1.0.1.tgz#1d38080c7ee92e1d2d2b94054d0a33c48951e0df"
-  integrity sha512-wyHeWKqbcQV78/tiMJ6pgJrkG7p2u3b2xX9IJFvvurpJL9/++89dHfkUebhWvSMS84LG0uQ7BnG5GGyAzY21Ag==
-  dependencies:
-    magic-string "^0.25.1"
-    perf-regexes "^1.0.1"
-    skip-regex "^1.0.2"
-
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -793,7 +779,7 @@ lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19:
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597336053864&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
 
-magic-string@^0.25.1, magic-string@^0.25.2:
+magic-string@^0.25.2:
   version "0.25.7"
   resolved "https://registry.npm.taobao.org/magic-string/download/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
   integrity sha1-P0l9b9NMZpxnmNy4IfLvMfVEUFE=
@@ -906,11 +892,6 @@ path-parse@^1.0.6:
   resolved "https://registry.npm.taobao.org/path-parse/download/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha1-1i27VnlAXXLEc37FhgDp3c8G0kw=
 
-perf-regexes@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/perf-regexes/-/perf-regexes-1.0.1.tgz#6da1d62f5a94bf9353a0451bccacf69068b75d0b"
-  integrity sha512-L7MXxUDtqr4PUaLFCDCXBfGV/6KLIuSEccizDI7JxT+c9x1G1v04BQ4+4oag84SHaCdrBgQAIs/Cqn+flwFPng==
-
 picomatch@^2.2.2:
   version "2.2.2"
   resolved "https://registry.npm.taobao.org/picomatch/download/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -969,13 +950,12 @@ rimraf@2.6.3:
   dependencies:
     glob "^7.1.3"
 
-rollup-plugin-cleanup@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.npmjs.org/rollup-plugin-cleanup/-/rollup-plugin-cleanup-3.1.1.tgz#d012faab5e212b1c4bfa8144ace70fc6ac7b3315"
-  integrity sha512-wMS9JQm4ShvlMqno1pOfqvh0yYgNLO2ZgmzDsVvKuDt4XCn+9DcMoUwRQ5t9p9b113dR5FhPFFUHnvvQ/yuEtA==
+rimraf@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz#f1a5402ba6220ad52cc1282bac1ae3aa49fd061a"
+  integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
-    js-cleanup "^1.0.1"
-    rollup-pluginutils "^2.3.3"
+    glob "^7.1.3"
 
 rollup-plugin-terser@^6.1.0:
   version "6.1.0"
@@ -997,13 +977,6 @@ rollup-plugin-typescript2@^0.27.2:
     fs-extra "8.1.0"
     resolve "1.17.0"
     tslib "2.0.1"
-
-rollup-pluginutils@^2.3.3:
-  version "2.8.2"
-  resolved "https://registry.npmjs.org/rollup-pluginutils/-/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
-  integrity sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
-  dependencies:
-    estree-walker "^0.6.1"
 
 rollup@^2.21.0:
   version "2.26.4"
@@ -1045,11 +1018,6 @@ shebang-regex@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/shebang-regex/download/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=
-
-skip-regex@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/skip-regex/-/skip-regex-1.0.2.tgz#ac655d77e7c771ac2b9f37585fea37bff56ad65b"
-  integrity sha512-pEjMUbwJ5Pl/6Vn6FsamXHXItJXSRftcibixDmNCWbWhic0hzHrwkMZo0IZ7fMRH9KxcWDFSkzhccB4285PutA==
 
 slash@^3.0.0:
   version "3.0.0"

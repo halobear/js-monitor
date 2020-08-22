@@ -1,7 +1,6 @@
 import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import cleanup from 'rollup-plugin-cleanup'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
@@ -19,12 +18,12 @@ const config = {
       format: 'es',
     },
     {
-      file: `lib/HaloMonitor.${version}js`,
+      file: `lib/haloMonitor.${version}js`,
       format: 'iife',
-      name: 'HaloMonitor',
+      name: 'haloMonitor',
     },
   ],
-  plugins: [cleanup(), resolve(), commonjs({ exclude: 'node_modules' }), json(), typescript()],
+  plugins: [resolve(), commonjs({ exclude: 'node_modules' }), json(), typescript()],
 }
 
 if (!isDev) {
