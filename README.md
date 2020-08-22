@@ -16,7 +16,7 @@
 ### 使用一、通过 <script> (推荐)
 
 ```html
-<script src="../lib/haloMonitor.js"></script>
+<script src="https://img1.halobear.com/static/haloMonitor.2.0.0.js"></script>
 <script>
   haloMonitor.config({ pid: '测试项目', reportUrl: 'http://localhost:9601/api/monitor/report' })
 </script>
