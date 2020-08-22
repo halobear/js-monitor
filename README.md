@@ -10,7 +10,7 @@
 ```html
 <script src="../lib/haloMonitor.js"></script>
 <script>
-  haloMonitor.init({ pid: '测试项目', reportUrl: 'http://localhost:9601/api/monitor/report' })
+  haloMonitor.config({ pid: '测试项目', reportUrl: 'http://localhost:9601/api/monitor/report' })
 </script>
 ```
 
@@ -39,4 +39,4 @@ export default initHaloMonitor
 - `needReport`?: Function 是否需要上报
 - `delay`?: number
 - `disabledHttp`?: Boolean
-- `disabledRejection`?: Boolean
+- `disabledRejection`?: Boolean 默认 false(会和 http 重复上报)

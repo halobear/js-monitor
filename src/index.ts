@@ -2,7 +2,7 @@
  * js 错误上报
  */
 import { InitOptions, ReportOptions } from 'types/js-monitor'
-import { uid } from './utils/util'
+import { uid, printError, printSuccess } from './utils/util'
 import handleError from './utils/handleError'
 import handleHttp from './utils/handleHttp'
 import handleRejection from './utils/handleRejection'
@@ -20,33 +20,34 @@ const defaults: InitOptions = {
 
 // 上次上报时间
 class HaloMonitor {
-  private config: InitOptions = defaults
+  private options: InitOptions = defaults
 
-  init(config: InitOptions) {
+  config(options: InitOptions) {
     // 初始化只会进行一次
-    if (this.config.reportUrl) return
+    if (this.options.reportUrl) return
 
     // 简单校验参数
-    if (!config.reportUrl) {
-      return '请填写上报地址'
+    if (!options.reportUrl) {
+      return printError('初始化失败，请填写上报地址')
     }
-    Object.assign(this.config, config)
+    Object.assign(this.options, options)
 
     const doReport = this.report.bind(this)
     // 监听onerror事件
     handleError(doReport)
     // 监听http错误
-    !this.config.disabledHttp && handleHttp(doReport)
+    !this.options.disabledHttp && handleHttp(doReport)
     // 监听未处理的promise错误
-    !this.config.disabledRejection && handleRejection(doReport)
+    !this.options.disabledRejection && handleRejection(doReport)
+    printSuccess(this.options)
   }
 
   // 开始上报
   report(options: ReportOptions) {
-    const { reportUrl, needReport } = this.config
+    const { reportUrl, needReport } = this.options
     if (!reportUrl) return console.log('缺失上报地址')
     if (needReport && !needReport(options)) return
-    report(options, this.config)
+    report(options, this.options)
   }
 
   // 上报Error错误

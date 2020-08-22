@@ -7,7 +7,10 @@
     <script src="../lib/HaloMonitor.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      haloMonitor.init({ pid: '测试-test', reportUrl: 'http://localhost:9601/api/monitor/report' })
+      haloMonitor.config({
+        pid: '测试-test',
+        reportUrl: 'http://localhost:9601/api/monitor/report',
+      })
     </script>
   </head>
   <body>

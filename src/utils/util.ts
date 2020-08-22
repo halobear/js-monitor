@@ -1,4 +1,4 @@
-import { ReportOptions, ItemError } from '../../types/js-monitor'
+import { ReportOptions, ItemError, InitOptions } from 'types/js-monitor'
 import { JS_TRACKER_ERROR_MAP } from 'src/constants'
 
 // 使用localStorage给用户一个唯一的标志
@@ -21,4 +21,21 @@ export function formatError(data: ReportOptions): ItemError {
     stack: data.stack.slice(0, 150),
     from: window.location.href,
   })
+}
+
+export function printError(text: string) {
+  console.log(
+    `%c halobearMontor: %c${text}`,
+    'color: #999;fonts-size: 12px',
+    'color: #ff9900;font-size: 16px;'
+  )
+}
+
+export function printSuccess(options: InitOptions) {
+  console.log(
+    '%c halobearMontor:%c config success...',
+    'color: #999;font-size: 12px',
+    'color: #1AAD19;font-size: 16px;'
+  )
+  console.log(`%c ${JSON.stringify(options, null, 2)}`, 'fontSize: 12px;color: #999')
 }
