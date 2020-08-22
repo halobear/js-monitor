@@ -16,10 +16,9 @@ export const uid = getUserId()
 
 // 格式化错误信息
 export function formatError(data: ReportOptions): ItemError {
-  return {
-    ...data,
+  return Object.assign({}, data, {
     type: data.type || JS_TRACKER_ERROR_MAP.ERROR_CUSTOM,
     stack: data.stack.slice(0, 150),
     from: window.location.href,
-  }
+  })
 }

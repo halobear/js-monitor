@@ -1,18 +1,16 @@
 ## haloMonitor
 
-一个入门级别的前端监控
+## 配合项目
+
+- [js-monitor-server](https://github.com/halobear/js-monitor-server): node 服务
+- [js-monitor-admin](https://github.com/halobear/js-monitor-admin): 管理后台
 
 ## 使用一、通过 <script> (推荐)
 
 ```html
-<script src="../lib/HaloMonitor.js"></script>
+<script src="../lib/haloMonitor.js"></script>
 <script>
-  ;(function initHaloMonitor(options) {
-    window.haloMonitor = HaloMonitor(options)
-  })({
-    pid: 'test',
-    reportUrl: 'http://localhost:9601/api/report',
-  })
+  haloMonitor.init({ pid: '测试项目', reportUrl: 'http://localhost:9601/api/monitor/report' })
 </script>
 ```
 
@@ -23,10 +21,22 @@ npm install -S @halobear/monitor
 ```
 
 ```js
-import initHaloMonitor from '@halobear/monitor'
+import haloMonitor from '@halobear/monitor'
 
-export default initHaloMonitor({
+haloMonitor.init({
   pid: 'test',
   reportUrl: 'http://localhost:9601/api/report',
 })
+
+export default initHaloMonitor
 ```
+
+## 配置
+
+- `pid`: string 项目名称
+- `reportUrl`: string 上报地址
+- `uid`?: string 用户名称
+- `needReport`?: Function 是否需要上报
+- `delay`?: number
+- `disabledHttp`?: Boolean
+- `disabledRejection`?: Boolean

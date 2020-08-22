@@ -5,6 +5,8 @@ export interface InitOptions {
   uid?: string
   needReport?: Function
   delay?: number
+  disabledHttp?: Boolean
+  disabledRejection?: Boolean
 }
 
 // 上报参数

@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@halobear/monitor</title>
+    <style>
+      body {
+        max-width: 600px;
+        margin: 0 auto;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>@halobear/monitor</title>
-  <style>
-    body {
-      max-width: 600px;
-      margin: 0 auto;
-    }
+      h2,
+      p {
+        text-align: center;
+      }
+    </style>
+    <script src="../lib/haloMonitor.js"></script>
+    <script>
+      haloMonitor.init({
+        pid: '测试-1',
+        reportUrl: 'http://localhost:9601/api/monitor/report',
+      })
+    </script>
+  </head>
 
-    h2,
-    p {
-      text-align: center;
-    }
-  </style>
-  <script src="../lib/HaloMonitor.js"></script>
-</head>
+  <body>
+    <h2>js-monitor</h2>
+    <p>一个入门级的前端监控</p>
+    <div class="container"></div>
+    <audio src="https://www.aa.com/a.mp3"></audio>
+    <video src="https://www.aa.com/a.mp4"></video>
+  </body>
 
-<body>
-  <h2>js-monitor</h2>
-  <p>一个入门级的前端监控</p>
-  <div class="container"></div>
-  <audio src="https://www.aa.com/a.mp3"></audio>
-  <video src="https://www.aa.com/a.mp4"></video>
-</body>
-<script>
-  ; (function initHaloMonitor(options) {
-    window.haloMonitor = HaloMonitor(options)
-  })({
-    pid: '测试项目002',
-    reportUrl: 'http://localhost:9601/api/monitor/report',
-  })
-</script>
-
-<script>
-  document.querySelector('.container').innerHTML = `
+  <script>
+    document.querySelector('.container').innerHTML = `
       <img src="http://11.333.top/ebf7590bf16d9963a09b1acf91fe8a37.jpg" />
       <img src="http://22.kuan341.top/ebf7590bf16d9963a09b1acf91fe8a37.jpg" />
       <img src="http://343.kuan441.top/ebf730bf16d9963a09b1acf91fe8a37.jpg" />
       <img src="http://44.kuan441.com/eb0bf16d9963a09b1acf91fe8a37.jpg" />
     `
 
-  function test() {
-    window.test2()
-  }
-  test()
-</script>
-<script src="https://1.com/1.js"></script>
-<script src="https://2.com/1.js"></script>
-<script src="https://3.com/1.js"></script>
-
+    function test() {
+      window.test2()
+    }
+    test()
+  </script>
+  <script src="https://1.com/1.js"></script>
+  <script src="https://2.com/1.js"></script>
+  <script src="https://3.com/1.js"></script>
 </html>

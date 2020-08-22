@@ -15,6 +15,7 @@ const defaults: InitOptions = {
   uid, // 用户id
   reportUrl: '', // 接口地址
   delay: 1000, // 延迟时间
+  disabledRejection: true, // 默认不开启unhandledrejection监听
 }
 
 // 上次上报时间
@@ -35,16 +36,16 @@ class HaloMonitor {
     // 监听onerror事件
     handleError(doReport)
     // 监听http错误
-    handleHttp(doReport)
+    !this.config.disabledHttp && handleHttp(doReport)
     // 监听未处理的promise错误
-    handleRejection(doReport)
+    !this.config.disabledRejection && handleRejection(doReport)
   }
 
   // 开始上报
   report(options: ReportOptions) {
-    if (!this.config.reportUrl) {
-      return '请填写上报地址'
-    }
+    const { reportUrl, needReport } = this.config
+    if (!reportUrl) return console.log('缺失上报地址')
+    if (needReport && !needReport(options)) return
     report(options, this.config)
   }
 

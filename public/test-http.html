@@ -6,6 +6,9 @@
     <title>测试http错误</title>
     <script src="../lib/HaloMonitor.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      haloMonitor.init({ pid: '测试-test', reportUrl: 'http://localhost:9601/api/monitor/report' })
+    </script>
   </head>
   <body>
     <h2>@halobear/monitor</h2>
@@ -14,12 +17,22 @@
     <script>
       document.querySelector('button').onclick = () => {
         console.log('todo')
-        fetch('http://127.0.0.1:5500/public/test-http/134124')
+        fetch('http://127.0.0.1:5500/public/test-http/1')
           .then((res) => {
             res.text().then((r) => console.log(11, r))
           })
           .catch((res) => {
             console.log(22, res)
+          })
+
+        axios({
+          url: 'http://127.0.0.1:5500/public/test-http/2',
+        })
+          .then((res) => {
+            console.log(33, res)
+          })
+          .catch((e) => {
+            console.log(44, e)
           })
       }
     </script>
