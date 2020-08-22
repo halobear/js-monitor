@@ -1,4 +1,3 @@
 .gitigore
-.tsconfig.json
 rollup.config.json
 yarn.lock

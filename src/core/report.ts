@@ -1,5 +1,11 @@
-import { InitOptions, ReportOptions, ItemError, ItemErrorKeys } from 'types/js-monitor'
-import { formatError } from './util'
+import {
+  InitOptions,
+  ReportOptions,
+  ItemError,
+  ItemErrorKeys,
+  StringifyObj,
+} from 'types/js-monitor'
+import { formatError, stringify } from './util'
 
 // 错误栈
 let errors: ItemError[] = []
@@ -11,14 +17,17 @@ function toReport(options: InitOptions) {
   if (!errors.length) return ''
   // console.log('准备提交收集到的错误信息', this.errors)
   if (!reportUrl) return console.error('没有配置reportUrl')
-  const pairs: string[] = [`pid=${pid}`, `uid=${uid}`]
+  const errorMap: StringifyObj = {
+    pid,
+    uid: uid || '',
+  }
   errors.forEach((item, i) => {
     Object.keys(item).forEach((key) => {
       const v = item[key as ItemErrorKeys] || ''
-      pairs.push(`${key}[${i}]=${v}`)
+      errorMap[`${key}[${i}]`] = v
     })
   })
-  const src = `${reportUrl}?${pairs.join('&')}`
+  const src = `${reportUrl}?${stringify(errorMap)}`
   const img = new Image()
   img.src = src
   // 清空错误队列

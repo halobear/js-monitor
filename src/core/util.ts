@@ -1,4 +1,4 @@
-import { ReportOptions, ItemError, InitOptions } from 'types/js-monitor'
+import { ReportOptions, ItemError, InitOptions, StringifyObj } from 'types/js-monitor'
 import { JS_TRACKER_ERROR_MAP } from 'src/constants'
 
 // 使用localStorage给用户一个唯一的标志
@@ -23,6 +23,14 @@ export function formatError(data: ReportOptions): ItemError {
   })
 }
 
+// 合并字符串
+export function stringify(obj: any) {
+  const o = obj as StringifyObj
+  const pairs: string[] = Object.keys(o).map((key) => `${key}=${obj[key]}`)
+  return pairs.join('&')
+}
+
+// 打印错误
 export function printError(text: string) {
   console.log(
     `%c halobearMontor: %c${text}`,
@@ -31,6 +39,7 @@ export function printError(text: string) {
   )
 }
 
+// 打印成功
 export function printSuccess(options: InitOptions) {
   console.log(
     '%c halobearMontor:%c config success...',

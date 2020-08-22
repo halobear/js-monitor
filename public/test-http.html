@@ -19,7 +19,6 @@
     <button>发送</button>
     <script>
       document.querySelector('button').onclick = () => {
-        console.log('todo')
         fetch('http://127.0.0.1:5500/public/test-http/1')
           .then((res) => {
             res.text().then((r) => console.log(11, r))

@@ -7,6 +7,7 @@ export interface InitOptions {
   delay?: number
   disabledHttp?: Boolean
   disabledRejection?: Boolean
+  disabledPerformance?: Boolean
 }
 
 // 上报参数
@@ -36,7 +37,29 @@ export interface ItemError extends ReportOptions {
 }
 export type ItemErrorKeys = keyof ItemError
 
-// 格式化错误函数
+// 上报错误函数
 export interface ReportFn {
   (options: ReportOptions): void
+}
+
+// 提交性能的对象
+export interface PerformanceOptions {
+  white_time: number
+  load_time: number
+  dom_use_time: number
+  redirect_time: number
+  response_time: number
+  dns_query_time: number
+  dns_cache_time: number
+  tcp_time: number
+}
+
+// 性能上报函数
+export interface PerformanceFn {
+  (options: PerformanceOptions): void
+}
+
+// stringify obj
+export interface StringifyObj {
+  [key: string]: string | number
 }

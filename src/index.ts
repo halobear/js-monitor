@@ -1,13 +1,15 @@
 /**
  * js 错误上报
  */
-import { InitOptions, ReportOptions } from 'types/js-monitor'
-import { uid, printError, printSuccess } from './utils/util'
-import handleError from './utils/handleError'
-import handleHttp from './utils/handleHttp'
-import handleRejection from './utils/handleRejection'
-import report from './utils/report'
+import { InitOptions, ReportOptions, PerformanceOptions } from 'types/js-monitor'
+import { uid, printError, printSuccess } from './core/util'
+import handleError from './core/handleError'
+import handleHttp from './core/handleHttp'
+import handleRejection from './core/handleRejection'
+import report from './core/report'
 import { JS_TRACKER_ERROR_MAP } from './constants'
+import monitorPerformance from './core/monitorPerformance'
+import reportPerformance from './core/reportPerformance'
 
 // 默认配置
 const defaults: InitOptions = {
@@ -32,13 +34,20 @@ class HaloMonitor {
     }
     Object.assign(this.options, options)
 
+    const { disabledHttp, disabledRejection, disabledPerformance } = this.options
+
     const doReport = this.report.bind(this)
+    const doReportPerformance = this.reportPerformance.bind(this)
     // 监听onerror事件
     handleError(doReport)
     // 监听http错误
-    !this.options.disabledHttp && handleHttp(doReport)
+    !disabledHttp && handleHttp(doReport)
     // 监听未处理的promise错误
-    !this.options.disabledRejection && handleRejection(doReport)
+    !disabledRejection && handleRejection(doReport)
+
+    !disabledPerformance && monitorPerformance(doReportPerformance)
+
+    // 打印成功
     printSuccess(this.options)
   }
 
@@ -57,6 +66,11 @@ class HaloMonitor {
       brief: `${e.name} ${e.message}`,
       stack: e.stack || 'no stack',
     })
+  }
+
+  // 上报性能
+  reportPerformance(options: PerformanceOptions) {
+    reportPerformance(options, this.options)
   }
 }
 
