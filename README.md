@@ -22,7 +22,21 @@
 </script>
 ```
 
-## 使用二、通过 npm
+### 使用二、webpack 模板 html 中
+
+```html
+<% if (process.env.NODE_ENV === 'production') { %>
+<script src="https://img1.halobear.com/static/haloMonitor.2.0.0.js"></script>
+<script>
+  haloMonitor.config({
+    pid: '测试项目',
+    reportUrl: '/api/monitor/report',
+  })
+</script>
+<% } %>
+```
+
+## 使用三、通过 npm
 
 ```bash
 npm install -S @halobear/monitor
@@ -39,13 +53,17 @@ haloMonitor.init({
 export default initHaloMonitor
 ```
 
-## 配置
+## 初始化参数
 
-- `pid`: string 项目名称
-- `reportUrl`: string 上报地址
-- `uid`?: string 用户名称
-- `needReport`?: Function 是否需要上报
-- `delay`?: number 默认 `1000`
-- `disabledHttp`?: Boolean 默认 `false`
-- `disabledRejection`?: Boolean 默认 `true`(会和 `http` 重复上报)
-- `disabledPerformance`? Boolean 默认 `false`
+```js
+export interface InitOptions {
+  pid: string // 项目名称
+  reportUrl: string // 上报地址
+  uid?: string // 用户名称
+  needReport?: Function // 是否上报验证函数
+  delay?: number // 延迟时间 默认 1000
+  disabledHttp?: Boolean //  是否xrh/fetch错误上报 默认：不禁用
+  disabledRejection?: Boolean // 是否rejection上报 默认：禁用
+  disabledPerformance?: Boolean // 是否上报性能  默认：不禁用
+}
+```
