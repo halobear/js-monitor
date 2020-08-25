@@ -13,7 +13,7 @@
 - [js-monitor-server](https://github.com/halobear/js-monitor-server): node 服务(每周六凌晨 5 点自动清空 10 天前数据)
 - [js-monitor-admin](https://github.com/halobear/js-monitor-admin): 监控的管理后台
 
-### 使用一、通过 <script> (推荐)
+### 使用一、通过 script (推荐)
 
 ```html
 <script src="https://img1.halobear.com/static/haloMonitor.2.0.1.js"></script>
