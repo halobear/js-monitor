@@ -24,9 +24,11 @@ export function formatError(data: ReportOptions): ItemError {
 }
 
 // 合并字符串
-export function stringify(obj: any) {
+export function encodeStringify(obj: any) {
   const o = obj as StringifyObj
-  const pairs: string[] = Object.keys(o).map((key) => `${key}=${obj[key]}`)
+  const pairs: string[] = Object.keys(o).map(
+    (key) => `${key}=${encodeURIComponent(obj[key] || '')}`
+  )
   return pairs.join('&')
 }
 
@@ -42,7 +44,7 @@ export function printError(text: string) {
 // 打印成功
 export function printSuccess(options: InitOptions) {
   console.log(
-    '%c halobearMontor:%c config success...',
+    '%c halobearMontor:%c running...',
     'color: #999;font-size: 12px',
     'color: #1AAD19;font-size: 16px;'
   )

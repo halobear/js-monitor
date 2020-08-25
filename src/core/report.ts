@@ -5,7 +5,7 @@ import {
   ItemErrorKeys,
   StringifyObj,
 } from 'types/js-monitor'
-import { formatError, stringify } from './util'
+import { formatError, encodeStringify } from './util'
 
 // 错误栈
 let errors: ItemError[] = []
@@ -27,7 +27,7 @@ function toReport(options: InitOptions) {
       errorMap[`${key}[${i}]`] = v
     })
   })
-  const src = `${reportUrl}?${stringify(errorMap)}`
+  const src = `${reportUrl}?${encodeStringify(errorMap)}`
   const img = new Image()
   img.src = src
   // 清空错误队列
