@@ -26,9 +26,10 @@ export function formatError(data: ReportOptions): ItemError {
 // 合并字符串
 export function encodeStringify(obj: any) {
   const o = obj as StringifyObj
-  const pairs: string[] = Object.keys(o).map(
-    (key) => `${key}=${encodeURIComponent(obj[key] || '')}`
-  )
+  const pairs: string[] = Object.keys(o).map((key) => {
+    const value = encodeURIComponent(obj[key])
+    return `${key}=${value === undefined ? '' : value}`
+  })
   return pairs.join('&')
 }
 
@@ -43,10 +44,7 @@ export function printError(text: string) {
 
 // 打印成功
 export function printSuccess(options: InitOptions) {
-  console.log(
-    '%c halobearMontor:%c running...',
-    'color: #999;font-size: 12px',
-    'color: #1AAD19;font-size: 16px;'
-  )
-  console.log(`%c ${JSON.stringify(options, null, 2)}`, 'fontSize: 12px;color: #999')
+  console.log('%c halobearMontor is running', 'color: #1AAD19;font-size: 12px;')
+  const { pid = '', reportUrl = '' } = options
+  console.dir({ pid, reportUrl })
 }
