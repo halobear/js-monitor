@@ -1,6 +1,6 @@
 {
   "name": "@halobear/monitor",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "一个入门级前端监控",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
