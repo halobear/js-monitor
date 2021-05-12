@@ -8,6 +8,7 @@ export interface InitOptions {
   disabledHttp?: Boolean //  是否xrh/fetch错误上报 默认：不禁用
   disabledRejection?: Boolean // 是否rejection上报 默认：禁用
   disabledPerformance?: Boolean // 是否上报性能  默认：不禁用
+  disabledLoadError?: Boolean // 是否上传资源加载错误  默认：禁用
 }
 
 // 上报参数

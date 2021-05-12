@@ -6,8 +6,8 @@ function toReportPerformance(callback: PerformanceFn) {
   if (load_time < 0) {
     setTimeout(function () {
       toReportPerformance(callback)
-    }, 200);
-    return;
+    }, 200)
+    return
   }
   const white_time = t.responseStart - t.navigationStart
   const dom_use_time = t.domComplete - t.responseEnd

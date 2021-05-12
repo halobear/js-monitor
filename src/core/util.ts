@@ -35,16 +35,13 @@ export function encodeStringify(obj: any) {
 
 // 打印错误
 export function printError(text: string) {
-  console.log(
-    `%c halobearMontor: %c${text}`,
-    'color: #999;fonts-size: 12px',
-    'color: #ff9900;font-size: 16px;'
-  )
+  console.log(`%c halobearMontor: %c${text}`, 'color: #999;fonts-size: 12px', 'color: #ff9900;font-size: 16px;')
 }
 
 // 打印成功
 export function printSuccess(options: InitOptions) {
-  console.log('%c halobearMontor is running', 'color: #1AAD19;font-size: 12px;')
+  console.groupCollapsed('%c halobearMontor is running', 'color: #1AAD19;font-size: 12px;')
   const { pid = '', reportUrl = '' } = options
-  console.dir({ pid, reportUrl })
+  console.log({ pid, reportUrl })
+  console.groupEnd()
 }

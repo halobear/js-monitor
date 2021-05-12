@@ -7,7 +7,7 @@ import handleError from './core/handleError'
 import handleHttp from './core/handleHttp'
 import handleRejection from './core/handleRejection'
 import report from './core/report'
-import { JS_TRACKER_ERROR_MAP } from './constants'
+import { JS_TRACKER_ERROR_MAP, LOAD_ERROR_TYPE_NAME } from './constants'
 import monitorPerformance from './core/monitorPerformance'
 import reportPerformance from './core/reportPerformance'
 
@@ -17,7 +17,10 @@ const defaults: InitOptions = {
   uid, // 用户id
   reportUrl: '', // 接口地址
   delay: 1000, // 延迟时间
-  disabledRejection: true, // 默认不开启unhandledrejection监听
+  disabledHttp: false,
+  disabledRejection: true,
+  disabledPerformance: false,
+  disabledLoadError: true,
 }
 
 // 上次上报时间
@@ -34,9 +37,12 @@ class HaloMonitor {
     }
     Object.assign(this.options, options)
 
-    const { disabledHttp, disabledRejection, disabledPerformance } = this.options
+    const { disabledHttp, disabledRejection, disabledPerformance, disabledLoadError } = this.options
 
-    const doReport = this.report.bind(this)
+    const doReport = (options: ReportOptions) => {
+      if (disabledLoadError && options.type in LOAD_ERROR_TYPE_NAME) return
+      return this.report(options)
+    }
     const doReportPerformance = this.reportPerformance.bind(this)
     // 监听onerror事件
     handleError(doReport)
